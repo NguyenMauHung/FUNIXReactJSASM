@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-// import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap'
+import Moment from 'react-moment';
 
 class Menu extends Component {
   constructor(props) {
+
     super(props);
     this.state = {
       selectedStaff: null
@@ -19,9 +20,13 @@ class Menu extends Component {
       return (
         <div className="col-12 m-3">
           <h4>Họ và tên: {staff.name}</h4>
-          <p>Ngày sinh: {staff.doB}</p>
-          <p>Ngày vào công ty: {staff.startDate}</p>
-          {/* <p>Phòng ban: {staff.department}</p> */}
+          <p>Ngày sinh:  <Moment format="DD/MM/YYYY">
+            {staff.doB}
+          </Moment> </p>
+          <p>Ngày vào công ty:  <Moment format="DD/MM/YYYY">
+            {staff.startDate}
+          </Moment></p>
+          <p>Phòng ban: {staff.department.name}</p>
           <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
           <p>Số ngày đã làm thêm: {staff.overTime}</p>
         </div>
@@ -34,10 +39,12 @@ class Menu extends Component {
   }
   render() {
     const menu = this.props.staffs.map(staff => {
+
       return (
         <div key={staff.id} className="col-12 col-md-5 m-3">
           <div onClick={() => this.onStaffSelect(staff)}>
             <div>{staff.name}</div>
+
           </div>
         </div>
       );
