@@ -1,12 +1,26 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import Moment from 'react-moment';
+import { Button } from 'reactstrap';
 
+
+
+function ColChange(props) {
+  const [col, setCol] = useState("1");
+  return (
+    <div>
+      {col}
+      <button onClick={() => setCol("black")}>Change to black</button>
+      <button onClick={() => setCol("white")}>Change to white</button>
+    </div>
+  )
+}
 class Menu extends Component {
   constructor(props) {
 
     super(props);
     this.state = {
-      selectedStaff: null
+      selectedStaff: null,
+      col: "col-12 col-md-2"
     }
   }
 
@@ -41,18 +55,34 @@ class Menu extends Component {
     const menu = this.props.staffs.map(staff => {
 
       return (
-        <div key={staff.id} className="col-12 col-md-5 m-3">
+
+        <div key={staff.id} className={this.state.col}>
+
           <div onClick={() => this.onStaffSelect(staff)}>
             <div>{staff.name}</div>
-
-          </div>
-        </div>
+          </div >
+        </div >
       );
     });
     return (
       <div className="container">
         <div className="row">
+          <div className="col-12">Danh sách nhân viên đang hiển thị 2 cột, Click nút phía dưới để đối số lượng cột</div>
+          <div className="col-12 col-md-6">
+            <Button onClick={() => this.setState({ col: "col-12" })}>Đổi thành 1 cột</Button>
+            <Button onClick={() => this.setState({ col: "col-12 col-md-6" })}>Đổi thành 2 cột</Button>
+            <Button onClick={() => this.setState({ col: "col-12 col-md-4" })}>Đổi thành 3 cột</Button>
+            <Button onClick={() => this.setState({ col: "col-12 col-md-2" })}>Đổi thành 6 cột</Button>
+          </div>
+        </div>
+        <div className="row">
+          <div>
+
+          </div>
           {menu}
+
+        </div>
+        <div className="row">
           <div>Bấm vào tên nhân viên để xem thông tin</div>
         </div>
         <div className="row">
