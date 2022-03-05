@@ -1,13 +1,13 @@
 import React, { useEffect, useState, Component } from 'react';
 import Moment from 'react-moment';
-import { Button, ButtonGroup } from 'reactstrap';
+
 
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedStaff: null,
-      col: "col-12 col-md-6"
+
     }
   }
 
@@ -43,25 +43,19 @@ class Menu extends Component {
 
       return (
 
-        <div key={staff.id} className={this.state.col}>
-          <div onClick={() => this.onStaffSelect(staff)}>
-            <div className="text-center">{staff.name}</div>
+        <div key={staff.id} className="col-6 col-md-4 col-lg-2 ">
+          <div onClick={() => this.onStaffSelect(staff)} style={{ margin: "5px" }} >
+            <img src={staff.image} alt={staff.name} />
+            <div>{staff.name}</div>
           </div >
         </div >
       );
     });
     return (
-      <div className="container">
+      <div className="container" >
         <div className="row text-center">
           <h3 className="col-12">Danh sách nhân viên</h3>
-          <div className="col-12">Click nút phía dưới để đối số lượng cột hiển thị, chỉ áp dụng đối với màn hình vừa trở lên</div>
-          <ButtonGroup style={{ margin: "10px auto" }}>
-            <Button color="primary" onClick={() => this.setState({ col: "col-12" })} >Đổi thành 1 cột</Button>
-            <Button color="primary" onClick={() => this.setState({ col: "col-12 col-md-6" })}>Đổi thành 2 cột</Button>
-            <Button color="primary" onClick={() => this.setState({ col: "col-12 col-md-4" })}>Đổi thành 3 cột</Button>
-            <Button color="primary" onClick={() => this.setState({ col: "col-12 col-md-3" })}>Đổi thành 4 cột</Button>
-            <Button color="primary" onClick={() => this.setState({ col: "col-12 col-md-2" })}>Đổi thành 6 cột</Button>
-          </ButtonGroup>
+
         </div>
         <div className="row">
           {menu}
