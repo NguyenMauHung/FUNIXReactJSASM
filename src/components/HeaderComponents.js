@@ -22,7 +22,7 @@ function Header() {
                                 <NavLink className="nav-link" to='/phongban'><span className="fa fa-address-card fa-lg"></span> Phòng Ban</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/contactus'><span className="fa fa-money fa-lg"></span> Bảng Lương</NavLink>
+                                <NavLink className="nav-link" to='/bangluong'><span className="fa fa-money fa-lg"></span> Bảng Lương</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
