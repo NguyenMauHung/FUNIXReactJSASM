@@ -1,3 +1,15 @@
+:root {
+    --color-primary: #ff6819;
+    --color-secondary: #282828 !important;
+    --color-white: #ffffff;
+    --font: "Roboto Slab", sans-serif;
+    --font-secondary: "Montagu Slab", serif;
+}
+
+body {
+    font-family: var(--font);
+}
+
 .row-header {
     margin: 0px auto;
     padding: 0px auto;
