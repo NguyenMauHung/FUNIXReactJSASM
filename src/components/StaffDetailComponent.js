@@ -4,7 +4,7 @@ import {
     Card, CardImg, CardImgOverlay, CardText,
     CardTitle, CardBody, Row, Col, Breadcrumb, BreadcrumbItem
 } from 'reactstrap';
-import { Link, Switch, Route, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function StaffDetail(props) {
     const { staffDetail } = props;

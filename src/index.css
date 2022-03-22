@@ -2,3 +2,14 @@ body {
   margin: 0;
   padding: 0;
 }
+.color {
+  background-color: blue;
+}
+.sort_selected::after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0px 0px 0px 10px;
+  display: inline-block;
+}

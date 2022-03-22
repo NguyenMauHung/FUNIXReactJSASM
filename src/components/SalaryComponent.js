@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, CardText, Jumbotron } from "reactstrap";
+import { Button } from "reactstrap";
+import "lodash"
+declare var _;
 
 Salary.propTypes = {
     salaryList: PropTypes.array
@@ -11,22 +13,35 @@ Salary.defaultProps = {
 
 }
 
+const doit = ({ staff }) => {
+    let salary = staff.salaryScale * 3000000 + staff.overTime * 200000;
+    staff.sort((a, b) => (staff.color > b.color) ? 1 : -1)
+}
+
 const RenderSalary = ({ staff }) => {
+
     const formatDecimal = require("format-decimal");
     let salary = staff.salaryScale * 3000000 + staff.overTime * 200000;
+    staff.salary = salary;
+    // console.log(staff)
+    const newArray = _.orderBy(staff, [salary], ["asc"]);
+    console.log(newArray)
     return (
-        <div key={staff.id} className="col-12 col-md-6 col-lg-4" style={{ margin: "15px 0px" }}>
-            <h5>{staff.name}</h5>
-            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Mã nhân viên : {staff.id}</div>
-            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Hệ số lương : {staff.salaryScale}</div>
-            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Số giờ làm thêm : {staff.overTime}</div>
+        <div key={newArray.id} className="col-12 col-md-6 col-lg-4" style={{ margin: "15px 0px" }}>
+            <h5>{newArray.name}</h5>
+            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Mã nhân viên : {newArray.id}</div>
+            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Hệ số lương : {newArray.salaryScale}</div>
+            <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Số giờ làm thêm : {newArray.overTime}</div>
             <div style={{ paddingLeft: "35px", margin: "15px 0px" }}>   Lương:{" "}
-                {formatDecimal(salary, {
-                    decimal: ".",
-                    thousands: ",",
+                {/* {formatDecimal(newArray.salary, {
+                    decimal: ",",
+                    thousands: ".",
                     precision: 0,
-                })}{" "}</div>
+                })}{" "} */}
+            </div>
         </div >
+
+
 
     );
 
@@ -45,7 +60,7 @@ function Salary(props) {
             <div id="sort" className="row">
                 <div className="col-12">
                     <h5 style={{ float: "left" }} >Sắp Xếp Theo Mã Nhân Viên </h5>
-                    <Button style={{ float: "left", marginLeft: "15px" }} >
+                    <Button onClick={doit} style={{ float: "left", marginLeft: "15px" }} >
                         <span class="fa fa-sort-amount-asc"></span> Mã Nhân Viên Từ Thấp Đến Cao
                     </Button>
 
