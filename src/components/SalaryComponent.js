@@ -4,7 +4,6 @@ import { Button, ButtonGroup } from 'reactstrap';
 const RenderSalary = ({ staff }) => {
     const formatDecimal = require("format-decimal");
 
-
     return (
         <div key={staff.id} className="col-12 col-md-6 col-lg-4" style={{ margin: "15px 0px" }}>
             <h5>{staff.name}</h5>
@@ -23,23 +22,22 @@ const RenderSalary = ({ staff }) => {
 
 };
 
-function Salary({ salaryList, onSortSalary, onSortSalaryName, onCheckSalary }) {
+function Salary({ salaryList, onSortSalary, onSortSalaryId, onCheckSalary }) {
 
-    console.log(onCheckSalary);
     return (
         <div className="container" >
             <div className="row text-center">
                 <h3 className="col-12">Bảng Lương Nhân Viên</h3>
                 <h3 className="col-12">Sắp xếp nhân viên</h3>
                 <ButtonGroup style={{ margin: "10px auto" }}>
-                    <Button color={onCheckSalary === "name1" ? "success" : "primary"} onClick={() => onSortSalaryName(1)}>
+                    <Button color={onCheckSalary === "name1" ? "success" : "primary"} onClick={() => onSortSalaryId(1)}>
                         <span className="fa fa-sort-alpha-asc pr-5">
-                            Tên A-Z
+                            Mã Nhân Viên Từ Thấp Đến Cao
                         </span>
                     </Button>
-                    <Button color={onCheckSalary === "name-1" ? "success" : "primary"} className={onCheckSalary === "name-1" ? "active" : ""} onClick={() => onSortSalaryName(-1)}>
+                    <Button color={onCheckSalary === "name-1" ? "success" : "primary"} onClick={() => onSortSalaryId(-1)}>
                         <span className="fa fa-sort-alpha-desc pr-5">
-                            Tên Z-A
+                            Mã Nhân Viên Từ Cao Xuống Thấp
                         </span>
                     </Button>
                     <Button color={onCheckSalary === "salary1" ? "success" : "primary"} onClick={() => onSortSalary(1)}>
@@ -53,14 +51,9 @@ function Salary({ salaryList, onSortSalary, onSortSalaryName, onCheckSalary }) {
             </div>
             <div className="row">
                 {salaryList.map((staff) => (
-
                     <RenderSalary staff={staff} />
-
-
-
                 ))}
             </div>
-
         </div>
 
 
