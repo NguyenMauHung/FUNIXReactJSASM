@@ -10,7 +10,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 function Main(props) {
     var [staffList, setStaffList] = useState(STAFFS)
+    staffList.map((staff) => {
+        let salary = staff.salaryScale * 3000000 + staff.overTime * 200000;
+        staff.salary = salary
+
+    })
+
     const [departmentList, setDepartmentList] = useState(DEPARTMENTS)
+    const [check, setCheck] = useState("");
+    const [checkSalary, setCheckSalary] = useState("");
     const [isRender, setIsRender] = useState(true);
     const StaffWithId = ({ match }) => {
         return (
@@ -41,19 +49,51 @@ function Main(props) {
         })
         setStaffList(newstaffList)
         setIsRender(!isRender)
+        setCheck(value)
     }
     useEffect(() => {
     }, [staffList, setIsRender])
+    const onSortSalaryName = (value) => {
+        const newstaffList = staffList.sort((a, b) => {
+            if (a.name > b.name) return value;
+            else if (a.name < b.name) return -value;
+            else return 0;
+        })
+        setStaffList(newstaffList)
+        setIsRender(!isRender)
+        if (value === 1) {
+            setCheckSalary("name1")
+        } else {
+            setCheckSalary("name-1")
+        }
 
+
+    }
+    const onSortSalary = (value) => {
+        const newstaffList = staffList.sort((a, b) => {
+            if (a.salary > b.salary) return value;
+            else if (a.salary < b.salary) return -value;
+            else return 0;
+        })
+        setStaffList(newstaffList)
+        setIsRender(!isRender)
+        if (value === 1) {
+            setCheckSalary("salary1")
+        } else {
+            setCheckSalary("salary-1")
+        }
+
+    }
+    console.log(checkSalary)
     return (
         <div className="App">
             <Header />
             <Switch>
-                <Route exact path='/' component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} />} />
-                <Route path="/staffs" component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} />} exact />
+                <Route exact path='/' component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} />} />
+                <Route path="/staffs" component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} />} exact />
                 <Route path="/staffs/:staffId" component={StaffWithId} />
                 <Route path="/departments" component={() => <Departments departmentList={departmentList} />} exact />
-                <Route path="/salary" component={() => <Salary salaryList={staffList} />} exact />
+                <Route path="/salary" component={() => <Salary salaryList={staffList} onSortSalary={onSortSalary} onSortSalaryName={onSortSalaryName} onCheckSalary={checkSalary} />} exact />
                 <Redirect from="/home" to="/" exact />
             </Switch>
 

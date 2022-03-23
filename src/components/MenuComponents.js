@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 import StaffDetail from './StaffDetailComponent';
 
 
-function Menu({ staffList, onSearch, onSort }) {
+function Menu({ staffList, onSearch, onSort, onCheck }) {
   const [keyword, setKeyword] = useState("")
   const [checkBy, setCheckBy] = useState("")
 
   const Search = () => {
     onSearch(keyword)
   }
-  const onCheck = (value) => {
-    setCheckBy(value)
-    onSort(value)
-  }
-  console.log(checkBy)
-
-
-
 
   return (
     <div className="container" >
@@ -50,15 +42,23 @@ function Menu({ staffList, onSearch, onSort }) {
                   Sắp Xếp <span className="fa fa-caret-square-o-down ml-5"></span>
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li onClick={() => onCheck(1)}>
-                    <a role="button" className={checkBy === 1 ? "sort_selected" : ""}>
+                  <li onClick={() => {
+
+                    onSort(1)
+
+                  }}>
+                    <a role="button" className={onCheck === 1 ? "sort_selected" : ""}>
                       <span className="fa fa-sort-alpha-asc pr-5">
                         Tên A-Z
                       </span>
                     </a>
                   </li>
-                  <li onClick={() => onCheck(-1)}>
-                    <a role="button" className={checkBy === -1 ? "sort_selected" : ""}>
+                  <li onClick={() => {
+
+                    onSort(-1)
+
+                  }}>
+                    <a role="button" className={onCheck === -1 ? "sort_selected" : ""}>
                       <span className="fa fa-sort-alpha-desc pr-5">
                         Tên Z-A
                       </span>
