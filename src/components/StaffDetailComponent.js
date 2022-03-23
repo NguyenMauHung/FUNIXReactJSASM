@@ -1,13 +1,13 @@
 import React from 'react';
 import Moment from 'react-moment';
 import {
-    Card, CardImg, CardImgOverlay, CardText,
+    Card, CardImg, CardText,
     CardTitle, CardBody, Row, Col, Breadcrumb, BreadcrumbItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function StaffDetail(props) {
-    const { staffDetail } = props;
+function StaffDetail({ staffDetail }) {
+
     if (staffDetail != null) {
         return (
             <div className="container">

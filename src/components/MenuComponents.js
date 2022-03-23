@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import StaffDetail from './StaffDetailComponent';
 
-
-function Menu({ staffList, onSearch, onSort, onCheck }) {
+function Menu({ staffList, onSearch, onSort, onCheck, onReset }) {
   const [keyword, setKeyword] = useState("")
-  const [checkBy, setCheckBy] = useState("")
-
   const Search = () => {
     onSearch(keyword)
+  }
+
+  const Reset = () => {
+    onReset()
   }
 
   return (
@@ -26,17 +26,27 @@ function Menu({ staffList, onSearch, onSort, onCheck }) {
                 className="form-control"
                 onChange={(event) => {
                   setKeyword(event.target.value)
-
-
                 }}
+                onKeyUp={(event) => {
+                  var keycode = (event.keyCode ? event.keyCode : event.which);
+                  if (keycode == '13') {
+                    setKeyword(event.target.value)
+                    Search()
+                  }
+                }}
+
                 placeholder="Nhập tên nhân viên" />
+
               <span className="input-group-btn">
                 <button className="btn btn-primary" type="button" onClick={Search}>
                   <span className="fa fa-search mr-5"></span>Tìm kiếm
                 </button>
               </span>
-
-
+              <span className="input-group-btn" style={{ marginLeft: "5px" }}>
+                <button className="btn btn-primary" type="button" onClick={Reset}>
+                  <span className="fa fa-refresh mr-5"></span>Reset
+                </button>
+              </span>
               <div className="dropdown" style={{ marginLeft: "5px" }}>
                 <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   Sắp Xếp <span className="fa fa-caret-square-o-down ml-5"></span>
@@ -66,6 +76,7 @@ function Menu({ staffList, onSearch, onSort, onCheck }) {
                   </li>
                 </ul >
               </div >
+
             </div>
           </div>
 
@@ -87,9 +98,6 @@ function Menu({ staffList, onSearch, onSort, onCheck }) {
         }
       </div>
       <div>Bấm vào tên nhân viên để xem thông tin</div>
-
-
-
     </div >
   )
 

@@ -28,26 +28,33 @@ function Salary({ salaryList, onSortSalary, onSortSalaryId, onCheckSalary }) {
         <div className="container" >
             <div className="row text-center">
                 <h3 className="col-12">Bảng Lương Nhân Viên</h3>
-                <h3 className="col-12">Sắp xếp nhân viên</h3>
-                <ButtonGroup style={{ margin: "10px auto" }}>
-                    <Button color={onCheckSalary === "name1" ? "success" : "primary"} onClick={() => onSortSalaryId(1)}>
-                        <span className="fa fa-sort-alpha-asc pr-5">
-                            Mã Nhân Viên Từ Thấp Đến Cao
-                        </span>
-                    </Button>
-                    <Button color={onCheckSalary === "name-1" ? "success" : "primary"} onClick={() => onSortSalaryId(-1)}>
-                        <span className="fa fa-sort-alpha-desc pr-5">
-                            Mã Nhân Viên Từ Cao Xuống Thấp
-                        </span>
-                    </Button>
-                    <Button color={onCheckSalary === "salary1" ? "success" : "primary"} onClick={() => onSortSalary(1)}>
-                        <span class="fa fa-sort-amount-asc">Lương Nhân Viên Từ Thấp Đến Cao</span>
-                    </Button>
-                    <Button color={onCheckSalary === "salary-1" ? "success" : "primary"} onClick={() => onSortSalary(-1)}>
-                        <span class="fa fa-sort-amount-desc">Lương Nhân Viên Từ Cao Xuống Thấp</span>
-                    </Button>
+                <div className="col-12">
+                    <ButtonGroup style={{ margin: "10px auto" }}>
+                        <div style={{ marginLeft: "55px" }}>Sắp xếp theo Mã nhân viên :</div>
+                        <Button style={{ marginLeft: "35px" }} color={onCheckSalary === "name1" ? "success" : "primary"} onClick={() => onSortSalaryId(1)}>
+                            <span className="fa fa-sort-alpha-asc pr-5">
+                                Mã Nhân Viên Từ Thấp Đến Cao
+                            </span>
+                        </Button>
+                        <Button color={onCheckSalary === "name-1" ? "success" : "primary"} onClick={() => onSortSalaryId(-1)}>
+                            <span className="fa fa-sort-alpha-desc pr-5">
+                                Mã Nhân Viên Từ Cao Xuống Thấp
+                            </span>
+                        </Button>
+                    </ButtonGroup>
+                </div>
+                <div className="col-12">
+                    <ButtonGroup style={{ margin: "10px auto" }}>
+                        <div style={{ margin: "10px 10px" }}>Sắp xếp theo Lương Nhân Viên :</div>
+                        <Button color={onCheckSalary === "salary1" ? "success" : "primary"} onClick={() => onSortSalary(1)}>
+                            <span class="fa fa-sort-amount-asc">Lương Nhân Viên Từ Thấp Đến Cao</span>
+                        </Button>
+                        <Button color={onCheckSalary === "salary-1" ? "success" : "primary"} onClick={() => onSortSalary(-1)}>
+                            <span class="fa fa-sort-amount-desc">Lương Nhân Viên Từ Cao Xuống Thấp</span>
+                        </Button>
+                    </ButtonGroup>
+                </div>
 
-                </ButtonGroup>
             </div>
             <div className="row">
                 {salaryList.map((staff) => (

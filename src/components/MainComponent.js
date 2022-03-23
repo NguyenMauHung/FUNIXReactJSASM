@@ -9,6 +9,8 @@ import { DEPARTMENTS, STAFFS } from '../shared/staffs'
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 function Main(props) {
+
+    // Add Salary to Object Staffs
     var [staffList, setStaffList] = useState(STAFFS)
     staffList.map((staff) => {
         let salary = staff.salaryScale * 3000000 + staff.overTime * 200000;
@@ -20,6 +22,8 @@ function Main(props) {
     const [check, setCheck] = useState("");
     const [checkSalary, setCheckSalary] = useState("");
     const [isRender, setIsRender] = useState(true);
+
+    // Render Staff Detail
     const StaffWithId = ({ match }) => {
         return (
             <StaffDetail staffDetail={staffList.filter((staff) => staff.id === parseInt(match.params.staffId, 10))[0]}
@@ -28,19 +32,19 @@ function Main(props) {
 
     }
 
-
+    // Search Name Staff
     const onSearch = (keyword) => {
-        const newstaffList = staffList.filter((staff) => {
+        const newstaffListS = staffList.filter((staff) => {
             return staff.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
         })
         if (keyword === "") {
             setStaffList(STAFFS)
         } else {
-            setStaffList(newstaffList)
-
+            setStaffList(newstaffListS)
         }
     }
 
+    // Sort Name Staff
     const onSort = (value) => {
         const newstaffList = staffList.sort((a, b) => {
             if (a.name > b.name) return value;
@@ -50,13 +54,25 @@ function Main(props) {
         setStaffList(newstaffList)
         setIsRender(!isRender)
         setCheck(value)
+        console.log(isRender)
+
     }
+
+    // Reset Staff
+    const onReset = () => {
+        setStaffList(STAFFS)
+    }
+
+    // Life Cycle
+
     useEffect(() => {
     }, [staffList, setIsRender])
-    const onSortSalaryName = (value) => {
+
+    // Sort SalaryId Staff
+    const onSortSalaryId = (value) => {
         const newstaffList = staffList.sort((a, b) => {
-            if (a.name > b.name) return value;
-            else if (a.name < b.name) return -value;
+            if (a.id > b.id) return value;
+            else if (a.id < b.id) return -value;
             else return 0;
         })
         setStaffList(newstaffList)
@@ -66,9 +82,9 @@ function Main(props) {
         } else {
             setCheckSalary("name-1")
         }
-
-
     }
+
+    // Sort Salary Staff
     const onSortSalary = (value) => {
         const newstaffList = staffList.sort((a, b) => {
             if (a.salary > b.salary) return value;
@@ -82,25 +98,21 @@ function Main(props) {
         } else {
             setCheckSalary("salary-1")
         }
-
     }
-    console.log(checkSalary)
+
     return (
         <div className="App">
             <Header />
             <Switch>
-                <Route exact path='/' component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} />} />
-                <Route path="/staffs" component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} />} exact />
+                <Route exact path='/' component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} onReset={onReset} />} />
+                <Route path="/staffs" component={() => <Menu staffList={staffList} onSearch={onSearch} onSort={onSort} onCheck={check} onReset={onReset} />} exact />
                 <Route path="/staffs/:staffId" component={StaffWithId} />
                 <Route path="/departments" component={() => <Departments departmentList={departmentList} />} exact />
-                <Route path="/salary" component={() => <Salary salaryList={staffList} onSortSalary={onSortSalary} onSortSalaryName={onSortSalaryName} onCheckSalary={checkSalary} />} exact />
+                <Route path="/salary" component={() => <Salary salaryList={staffList} onSortSalary={onSortSalary} onSortSalaryId={onSortSalaryId} onCheckSalary={checkSalary} />} exact />
                 <Redirect from="/home" to="/" exact />
             </Switch>
 
             <Footer />
-
-
-
         </div>
     );
 }

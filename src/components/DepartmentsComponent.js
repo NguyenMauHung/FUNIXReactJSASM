@@ -1,17 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-Departments.propTypes = {
-    departmentList: PropTypes.array
-};
+function Departments({ departmentList }) {
 
-Departments.defaultProps = {
-    departmentList: [],
-
-}
-
-function Departments(props) {
-    const { departmentList } = props;
     return (
         <div className="container" >
             <div className="row text-center">
