@@ -16,10 +16,7 @@ function StaffDetail({ staffDetail }) {
                         <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
                         <BreadcrumbItem active>{staffDetail.name}</BreadcrumbItem>
                     </Breadcrumb>
-                    <div className="col-12">
-                        <h3>{staffDetail.name}</h3>
-                        <hr />
-                    </div>
+
                 </div>
                 <Row style={{ margin: "15px 0px" }}>
                     <Col>

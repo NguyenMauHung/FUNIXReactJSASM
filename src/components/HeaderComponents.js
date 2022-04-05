@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 function Header() {
     const [isNavOpen, setisNavOpen] = useState(false);
     const toggleNav = () => {
-        setisNavOpen(true)
+        setisNavOpen(!isNavOpen)
     }
     return (
         <React.Fragment>

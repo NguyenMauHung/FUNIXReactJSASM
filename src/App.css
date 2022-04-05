@@ -43,3 +43,12 @@ address {
 .navbar-dark {
     background-color: #1766f9;
 }
+
+.required {
+    display: block;
+    color: red !important;
+}
+
+.none {
+    display: none;
+}

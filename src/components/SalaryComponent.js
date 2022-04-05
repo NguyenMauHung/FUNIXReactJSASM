@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
+import NumberFormat from "react-number-format";
 
 const RenderSalary = ({ staff }) => {
-    const formatDecimal = require("format-decimal");
+
 
     return (
         <div key={staff.id} className="col-12 col-md-6 col-lg-4" style={{ margin: "15px 0px" }}>
@@ -10,12 +11,14 @@ const RenderSalary = ({ staff }) => {
             <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Mã nhân viên : {staff.id}</div>
             <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Hệ số lương : {staff.salaryScale}</div>
             <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Số giờ làm thêm : {staff.overTime}</div>
-            <div style={{ paddingLeft: "35px", margin: "15px 0px" }}>   Lương:{" "}
-                {formatDecimal(staff.salary, {
-                    decimal: ",",
-                    thousands: ".",
-                    precision: 0,
-                })}{" "}</div>
+            <div style={{ paddingLeft: "35px", margin: "15px 0px" }}> <NumberFormat
+                value={staff.salary}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                decimalScale={0}
+
+            />   </div>
         </div >
 
     );
