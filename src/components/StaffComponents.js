@@ -289,16 +289,16 @@ class Staff extends Component {
                     <option value={0}>
                       Sale
                     </option>
-                    <option value={2}>
+                    <option value={1}>
                       HR
                     </option>
-                    <option value={3}>
+                    <option value={2}>
                       Marketing
                     </option>
-                    <option value={4}>
+                    <option value={3}>
                       IT
                     </option>
-                    <option value={5}>
+                    <option value={4}>
                       Finance
                     </option>
                   </Input>
