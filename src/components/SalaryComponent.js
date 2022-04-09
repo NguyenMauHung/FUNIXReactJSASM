@@ -68,7 +68,7 @@ class Salary extends Component {
                                 </span>
                             </Button>
 
-                            <Button color={this.props.sort.sortById === 1 && this.props.sort.sortBySalary === -1 ? "success" : "primary"} onClick={() => this.onClick(1, -1)}>
+                            <Button style={{ marginLeft: "15px" }} color={this.props.sort.sortById === 1 && this.props.sort.sortBySalary === -1 ? "success" : "primary"} onClick={() => this.onClick(1, -1)}>
                                 <span className="fa fa-sort-alpha-desc pr-5">
                                     Mã Nhân Viên Từ Cao Xuống Thấp
                                 </span>
@@ -81,7 +81,7 @@ class Salary extends Component {
                             <Button color={this.props.sort.sortById === -1 && this.props.sort.sortBySalary === 1 ? "success" : "primary"} onClick={() => this.onClick(-1, 1)}>
                                 <span className="fa fa-sort-amount-asc">Lương Nhân Viên Từ Thấp Đến Cao</span>
                             </Button>
-                            <Button color={this.props.sort.sortById === -1 && this.props.sort.sortBySalary === -1 ? "success" : "primary"} onClick={() => this.onClick(-1, -1)}>
+                            <Button style={{ marginLeft: "15px" }} color={this.props.sort.sortById === -1 && this.props.sort.sortBySalary === -1 ? "success" : "primary"} onClick={() => this.onClick(-1, -1)}>
                                 <span className="fa fa-sort-amount-desc">Lương Nhân Viên Từ Cao Xuống Thấp</span>
                             </Button>
                         </ButtonGroup>

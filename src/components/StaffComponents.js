@@ -9,7 +9,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 const required = (val) => val && val.length; //value > 0
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
-const validsalaryScale = (val) => /^[1-2]\.\d$|^3.0$|^1$|^3$/i.test(val);
+const validsalaryScale = (val) => /^[1-2]\.\d$|^3.0$|^1$|^3$|^2$/i.test(val);
 const validannualLeave = (val) => /^\d\.[05]$|^\d$/.test(val);
 const validoverTime = (val) => /^[012]?\d$|30/.test(val);
 
