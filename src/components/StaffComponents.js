@@ -63,7 +63,7 @@ class Staff extends Component {
 
     if (this.state.touched.name && name.length < 3) {
       errors.name = 'Yêu cầu nhiều hơn 2 ký tự';
-    } else if (this.state.touched.name && name.length > 10) {
+    } else if (this.state.touched.name && name.length > 30) {
       errors.name = 'Yêu cầu ít hơn 30 ký tự';
     }
 
@@ -71,7 +71,7 @@ class Staff extends Component {
       errors.department = 'Yêu cầu chọn phòng ban';
     }
 
-    const reg = /^[1-2]\.\d$|^3.0$|^1$|^3$/;
+    const reg = /^[1-2]\.\d$|^3.0$|^1$|^3$|^2$/;
     const reg1 = /^\d\.[05]$|^\d$/;
     const reg2 = /^[012]?\d$|30/;
 

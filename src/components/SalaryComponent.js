@@ -39,7 +39,7 @@ function Salary({ salaryList, onSortSalary, onSortSalaryId, onCheckSalary }) {
                                 Mã Nhân Viên Từ Thấp Đến Cao
                             </span>
                         </Button>
-                        <Button color={onCheckSalary === "name-1" ? "success" : "primary"} onClick={() => onSortSalaryId(-1)}>
+                        <Button style={{ marginLeft: "15px" }} color={onCheckSalary === "name-1" ? "success" : "primary"} onClick={() => onSortSalaryId(-1)}>
                             <span className="fa fa-sort-alpha-desc pr-5">
                                 Mã Nhân Viên Từ Cao Xuống Thấp
                             </span>
@@ -52,7 +52,7 @@ function Salary({ salaryList, onSortSalary, onSortSalaryId, onCheckSalary }) {
                         <Button color={onCheckSalary === "salary1" ? "success" : "primary"} onClick={() => onSortSalary(1)}>
                             <span class="fa fa-sort-amount-asc">Lương Nhân Viên Từ Thấp Đến Cao</span>
                         </Button>
-                        <Button color={onCheckSalary === "salary-1" ? "success" : "primary"} onClick={() => onSortSalary(-1)}>
+                        <Button style={{ marginLeft: "15px" }} color={onCheckSalary === "salary-1" ? "success" : "primary"} onClick={() => onSortSalary(-1)}>
                             <span class="fa fa-sort-amount-desc">Lương Nhân Viên Từ Cao Xuống Thấp</span>
                         </Button>
                     </ButtonGroup>
