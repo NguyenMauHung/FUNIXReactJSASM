@@ -154,12 +154,6 @@ class Main extends Component {
 
         })
 
-        // console.log(this.state)
-        // staffList = staffList.filter((staff) => {
-        //     return staff.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
-        // });
-
-
         // Render Staff Detail
 
         return (
