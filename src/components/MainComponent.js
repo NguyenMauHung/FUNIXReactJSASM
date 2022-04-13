@@ -18,7 +18,7 @@ class Main extends Component {
             required: true,
             check: "",
             checkSalary: "",
-            staffListinit: "",
+            staffListinit: STAFFS,
 
         };
     }
