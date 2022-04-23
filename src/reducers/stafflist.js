@@ -1,31 +1,29 @@
 import * as types from "./../constants/ActionTypes"
-import { STAFFS } from '../shared/staffs'
 
-var staffList = JSON.parse(localStorage.getItem('staffList'));
-var initialState = staffList ? staffList : STAFFS;
+var initialState = {
+    isLoading: true,
+    errMess: null,
+    staffList: [],
+    staffDetail: [],
+}
 var myReducer = (state = initialState, action) => {
+    console.log(action)
+
     switch (action.type) {
-        case types.LIST_ALL:
-            return state;
-        case types.ADD_STAFF:
-            var newstaffList = {
-                id: state.length,
-                name: action.staff.name,
-                doB: action.staff.doB,
-                salaryScale: action.staff.salaryScale,
-                startDate: action.staff.startDate,
-                department: action.staff.department,
-                annualLeave: action.staff.annualLeave,
-                overTime: action.staff.overTime,
-                image: '/assets/images/alberto.png',
-            }
-            state.push(newstaffList);
-            console.log(state, newstaffList)
-            localStorage.setItem('staffList', JSON.stringify(state));
-            return state;
+        case types.STAFF_LIST:
+            return { ...state, isLoading: false, errMess: null, staffList: action.stafflist };
+        case types.STAFF_LOADING:
+            return { ...state, isLoading: true, errMess: null, staffList: [] };
+        case types.STAFF_FAILED:
+            return { ...state, isLoading: false, errMess: action.errmess };
+        case types.EDIT_STAFF:
+            var staffDetail = state.staffList.filter((staff) => staff.id == action.staff)
+            return { ...state, isLoading: false, errMess: action.errMess, staffDetail: staffDetail };
         default: return state
     }
 
 }
+
+
 
 export default myReducer

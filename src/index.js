@@ -10,12 +10,15 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 //store
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import myReducer from './reducers/index';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
 const store = createStore(
-  myReducer, /* preloadedState, */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  myReducer,
+  applyMiddleware(thunk, logger)
 );
 
 
