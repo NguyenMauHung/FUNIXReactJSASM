@@ -12,9 +12,7 @@ const mapDispatchToProps = (dispatch, props) => {
 }
 
 class RenderStaff extends Component {
-    constructor(props) {
-        super(props);
-    }
+
     onDeleteStaff = (id) => {
         if (confirm("Bạn chắc chắn muốn xóa hay không")) { // eslint-disable-line
             this.props.fetchDeleteStaff(id)

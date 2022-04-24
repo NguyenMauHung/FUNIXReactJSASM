@@ -19,8 +19,8 @@ class Main extends Component {
     }
 
     DepartmentWithId = ({ match }) => {
-        var { staffList } = this.props;
-        var departmentsId = match.params.departmentsId
+        // var { staffList } = this.props;
+        // var departmentsId = match.params.departmentsId
         return (
             // <DepartmentDetail staffList={staffList} departmentsId={departmentsId}
             // />
