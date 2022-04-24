@@ -7,7 +7,7 @@ export const fetchStaffs = () => (dispatch) => {
     dispatch(staffLoading(true));
     return callAPI("staffs", "GET", null)
         .then(response => {
-            if (response.statusText == "OK") {
+            if (response.statusText === "OK") {
                 return response
             } else {
                 var error = new Error('Error ' + response.status + ': ' + response.statusText);
@@ -46,16 +46,13 @@ export const staffList = (stafflist) => {
     }
 };
 
-
-
 //Tinh Huong 2 
 export const fetchDepartments = () => (dispatch) => {
     dispatch(departmentLoading(true));
     return callAPI("departments", "GET", null)
         .then(response => {
-            if (response.statusText == "OK") {
+            if (response.statusText === "OK") {
                 return response
-
             } else {
                 var error = new Error('Error ' + response.status + ': ' + response.statusText);
                 error.response = response;

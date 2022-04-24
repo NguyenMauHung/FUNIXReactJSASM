@@ -7,11 +7,8 @@ var myReducer = (state = initialState, action) => {
         case types.SEARCH: {
             return action.keyword
         }
-
-
         default: return state
     }
-
 }
 
 export default myReducer

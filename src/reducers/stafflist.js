@@ -7,8 +7,6 @@ var initialState = {
     staffDetail: [],
 }
 var myReducer = (state = initialState, action) => {
-    console.log(action)
-
     switch (action.type) {
         case types.STAFF_LIST:
             return { ...state, isLoading: false, errMess: null, staffList: action.stafflist };

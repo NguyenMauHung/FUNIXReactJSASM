@@ -9,16 +9,11 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import * as actions from "./../actions/index";
 import DepartmentDetail from './DepartmentDetail';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
 
 class Main extends Component {
 
     StaffWithId = ({ match }) => {
-        var { staffList } = this.props;
         return (
-            // <StaffDetail staffDetail={staffList.filter((staff) => staff.id === parseInt(match.params.staffId, 10))[0]}
-            // />
             <StaffDetail />
         );
     }
@@ -32,14 +27,10 @@ class Main extends Component {
         );
     }
 
-
-
-
     componentDidMount() {
         this.props.fetchStaffs();
         this.props.fetchDepartments();
         this.props.fetchSalarys();
-
     }
 
     render() {
@@ -52,14 +43,10 @@ class Main extends Component {
             staff.salary = salary;
         })
 
-        // Render Staff Detail
-
         return (
             <div>
                 <div className="App">
                     <Header />
-
-
                     <Switch>
                         <Route exact path='/' component={() => <Staff />} />
                         <Route path="/staffs" component={() => <Staff />} exact />
@@ -69,7 +56,6 @@ class Main extends Component {
                         <Route path="/salary" component={() => <Salary />} exact />
                         <Redirect from="/home" to="/" exact />
                     </Switch>
-
                     <Footer />
                 </div>
             </div >
@@ -88,7 +74,6 @@ const mapDispatchToProps = (dispatch, props) => {
         fetchStaffs: () => { dispatch(actions.fetchStaffs()) },
         fetchDepartments: () => { dispatch(actions.fetchDepartments()) },
         fetchSalarys: () => { dispatch(actions.fetchSalaryList()) }
-
     }
 }
 

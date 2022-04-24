@@ -9,9 +9,6 @@ import { Loading } from './LoadingComponent';
 import RenderStaff from './RenderStaffComponent';
 import { FadeTransform } from 'react-animation-components';
 
-
-
-
 const required = (val) => val && val.length; //value > 0
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
@@ -27,7 +24,6 @@ const mapStateToProps = (state) => {
     errMess: state.staffList.errMess,
     keyword: state.search
   }
-
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -38,13 +34,10 @@ const mapDispatchToProps = (dispatch, props) => {
     onSearch: (keyword) => {
       dispatch(actions.searchStaff(keyword))
     },
-
   }
-
 }
 
 class Staff extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +55,6 @@ class Staff extends Component {
 
   }
 
-
   //Toggle Modal
   toggleModal = () => {
     this.setState({
@@ -79,7 +71,6 @@ class Staff extends Component {
       this.setState({
         department: DEPARTMENTS[value]
       });
-
     } else {
       this.setState({
         [name]: value
@@ -87,10 +78,8 @@ class Staff extends Component {
     }
   }
 
-
   handleSubmit = (values, event) => {
     var newstaffList = {
-
       name: this.state.name,
       doB: this.state.doB,
       salaryScale: this.state.salaryScale,
@@ -100,25 +89,19 @@ class Staff extends Component {
       overTime: this.state.overTime,
       image: '/assets/images/alberto.png',
     }
-
     this.props.fetchAddStaffs(newstaffList)
-
     this.setState({
       isModalOpen: !this.state.isModalOpen
     });
-
   }
 
   //Search
   handleSearch = () => {
     this.props.onSearch(this.state.keyword)
-
   }
 
   render() {
-
     var { staffList, isLoading, errMess, keyword } = this.props;
-    console.log(isLoading)
     if (isLoading) {
       return (
         <div className="container">
@@ -146,19 +129,15 @@ class Staff extends Component {
       staffList = staffList.filter((staff) => {
         return staff.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
       })
-
       return (
-
         <div className="container" >
           <div className="row">
             <div className="col-12 col-md-3 col-lg-2 ">
               <h3>Nhân Viên</h3>
             </div>
-
             <div className="col-12 col-md-4 col-lg-5 ">
               <Button outline onClick={this.toggleModal}><span className="fa fa-plus fa-lg"></span> Thêm Nhân viên</Button>
             </div>
-
             <div className="col-12 col-md-5 col-lg-5 ">
               <div className="input-group mb-3">
                 <input
@@ -169,11 +148,9 @@ class Staff extends Component {
                   onKeyUp={(event) => {
                     var keycode = (event.keyCode ? event.keyCode : event.which);
                     if (keycode == '13') {
-
                       this.handleSearch()
                     }
                   }}
-
                   placeholder="Nhập tên nhân viên" />
 
                 <span className="Control.text-group-btn">
@@ -181,12 +158,9 @@ class Staff extends Component {
                     <span className="fa fa-search mr-1"></span>Tìm kiếm
                   </button>
                 </span>
-
               </div>
-
               <hr />
             </div>
-
           </div>
 
           {/* Animation */}
@@ -197,10 +171,6 @@ class Staff extends Component {
             }}>
             <RenderStaff staffList={staffList} />
           </FadeTransform>
-
-
-
-
           <div>Bấm vào tên nhân viên để xem thông tin</div>
 
           <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
@@ -232,7 +202,6 @@ class Staff extends Component {
                       }}
                     />
                   </Col>
-
                 </Row>
 
                 <Row className="form-group">
@@ -258,7 +227,6 @@ class Staff extends Component {
                         required: 'Yêu Cầu Nhập',
                       }}
                     />
-
                   </Col>
                 </Row>
 
@@ -286,7 +254,6 @@ class Staff extends Component {
 
                       }}
                     />
-
                   </Col>
                 </Row>
 
@@ -317,7 +284,6 @@ class Staff extends Component {
                         Finance
                       </option>
                     </Control.select>
-
                   </Col>
                 </Row>
 
@@ -344,8 +310,6 @@ class Staff extends Component {
                         validsalaryScale: "Hệ số lương chỉ từ 1.0 đến 3.0"
                       }}
                     />
-
-
                   </Col>
                 </Row>
 
@@ -372,8 +336,6 @@ class Staff extends Component {
                         validannualLeave: "Số ngày nghỉ còn lại phải là bội số của 0.5 như 1 hoặc 1.5 và không quá 9 ngày"
                       }}
                     />
-
-
                   </Col>
                 </Row>
 
@@ -418,15 +380,11 @@ class Staff extends Component {
               </LocalForm>
             </ModalBody>
           </Modal >
-
         </div >
       )
     }
-
   }
 }
-
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Staff));
 

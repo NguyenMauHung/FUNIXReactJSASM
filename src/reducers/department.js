@@ -18,7 +18,6 @@ var myReducer = (state = initialState, action) => {
             return { ...state, isLoading: false, errMess: action.errMess, departmentStaff: action.departmentStaff };
         default: return state
     }
-
 }
 
 export default myReducer

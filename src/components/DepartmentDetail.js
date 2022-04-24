@@ -5,20 +5,18 @@ import { Link, withRouter } from 'react-router-dom';
 import { fetchDepartmentStaff } from '../actions';
 import { FadeTransform } from 'react-animation-components';
 
-
 class DepartmentDetail extends Component {
 
     componentDidMount() {
         var { match } = this.props;
         if (match) {
             var id = match.params.departmentsId;
-            console.log(id)
             this.props.DepartmentStaff(id)
         }
     }
+
     render() {
         var { staffList, departmentsId } = this.props;
-
         const findname_department = (departmentsId) => {
             switch (departmentsId) {
                 case "Dept01":
@@ -39,11 +37,9 @@ class DepartmentDetail extends Component {
         var name_department = findname_department(departmentsId);
         if (staffList.length > 0) {
             staffList = staffList.filter((staff) => {
-
                 return staff.departmentId === departmentsId;
             })
         }
-
 
         return (
             <div className="container" >
@@ -52,13 +48,10 @@ class DepartmentDetail extends Component {
                         <BreadcrumbItem><Link to="/departments">Phòng Ban</Link></BreadcrumbItem>
                         <BreadcrumbItem active>{name_department}</BreadcrumbItem>
                     </Breadcrumb>
-
                 </div>
 
                 <div className="row">
-
                     {staffList.map((staff) => (
-
                         <div key={staff.id} className="col-6 col-md-4 col-lg-2 ">
                             <FadeTransform
                                 in
@@ -72,14 +65,9 @@ class DepartmentDetail extends Component {
                                     </div >
                                 </Link>
                             </FadeTransform>
-
-
                         </div >
-
-
                     ))
                     }
-
                 </div>
             </div >
         )
@@ -87,6 +75,7 @@ class DepartmentDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         staffDetail: state.departmentList.departmentStaff
     }
@@ -97,10 +86,7 @@ const mapDispatchToProps = (dispatch, props) => {
         DepartmentStaff: (id) => {
             dispatch(fetchDepartmentStaff(id))
         },
-
-
     }
 }
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DepartmentDetail));

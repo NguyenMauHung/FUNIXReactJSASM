@@ -5,15 +5,11 @@ import { Link } from 'react-router-dom';
 import { FadeTransform } from 'react-animation-components';
 
 const mapStateToProps = (state) => {
-
     return {
         departmentList: state.departmentList.departmentList,
         isLoading: state.departmentList.isLoading,
         errMess: state.departmentList.errMess,
-
-
     }
-
 }
 
 class Departments extends Component {
@@ -53,14 +49,9 @@ class Departments extends Component {
                                             <div style={{ paddingLeft: "25px" }}>Số lượng nhân viên : {depart.numberOfStaff}</div>
                                         </div >
                                     </Link>
-
-
-
                                 </div >
-
                             ))
                             }
-
                         </div>
                     </FadeTransform>
                 </div>
@@ -68,6 +59,5 @@ class Departments extends Component {
         }
     }
 }
-
 
 export default connect(mapStateToProps, null)(Departments);

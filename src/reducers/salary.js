@@ -9,7 +9,6 @@ var myReducer = (state = initialState, action) => {
 
         default: return state
     }
-
 }
 
 export default myReducer

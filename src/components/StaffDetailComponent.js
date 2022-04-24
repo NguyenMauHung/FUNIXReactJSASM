@@ -14,8 +14,6 @@ class StaffDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-
             name: "",
             doB: "",
             salaryScale: 1,
@@ -33,8 +31,6 @@ class StaffDetail extends Component {
                 annualLeave: false,
                 overTime: false
             },
-
-
         };
     }
 
@@ -42,16 +38,13 @@ class StaffDetail extends Component {
         var { match } = this.props;
         if (match) {
             var id = match.params.staffId;
-
             this.props.EditStaffDetail(id)
         }
     }
 
     componentWillReceiveProps(nextProps) {
-
         if (nextProps && nextProps.staffDetail) {
             var { staffDetail } = nextProps;
-
             this.setState({
                 name: staffDetail.name,
                 doB: moment(staffDetail.doB).format('YYYY-MM-DD'),
@@ -60,9 +53,7 @@ class StaffDetail extends Component {
                 department: staffDetail.departmentId,
                 annualLeave: staffDetail.annualLeave,
                 overTime: staffDetail.overTime,
-
             })
-
         }
     }
 
@@ -79,8 +70,6 @@ class StaffDetail extends Component {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
         });
-
-
     }
 
     validate = (name, department, salaryScale, annualLeave, overTime) => {
@@ -115,9 +104,6 @@ class StaffDetail extends Component {
         return errors
     }
 
-
-
-
     //Add Staff
     handleInputChange = (event) => {
         const target = event.target;
@@ -126,18 +112,13 @@ class StaffDetail extends Component {
         this.setState({
             [name]: value
         });
-
-
     }
-
 
     handleSubmit = (event) => {
         event.preventDefault();
         var { match } = this.props;
-
         if (match) {
             var id = match.params.staffId;
-
             var newstaffList = {
                 id: id,
                 name: this.state.name,
@@ -149,36 +130,22 @@ class StaffDetail extends Component {
                 overTime: this.state.overTime,
                 image: '/assets/images/alberto.png',
             }
-
             this.props.UpdateStaffDetail(newstaffList, id)
             this.setState({
                 isDisplay: !this.state.isDisplay
             });
-
         }
-
-
-
-
-
     }
 
     render() {
-
         var { staffDetail } = this.props
         const errors = this.validate(this.state.name, this.state.department, this.state.salaryScale, this.state.annualLeave, this.state.overTime);
-        console.log(this.state)
-
-
         if (staffDetail != null) {
-
             for (let i = 0; i < DEPARTMENTS.length; i++) {
                 if (staffDetail.departmentId == DEPARTMENTS[i].id) {
                     var department_name = DEPARTMENTS[i].name
                 }
             }
-
-
 
             return (
                 <div className="container">
@@ -187,7 +154,6 @@ class StaffDetail extends Component {
                             <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
                             <BreadcrumbItem active>{staffDetail.name}</BreadcrumbItem>
                         </Breadcrumb>
-
                     </div>
 
                     <Row style={{ margin: "15px 0px" }} className={this.state.isDisplay ? "" : "ToggleForm"}>
@@ -219,9 +185,7 @@ class StaffDetail extends Component {
                                                 <p>Số ngày đã làm thêm: {staffDetail.overTime}</p>
 
                                                 <button type="button" class="btn btn-primary" onClick={this.toggleForm} >Update Thông Tin</button>
-
                                             </CardText>
-
                                         </CardBody>
                                     </Col>
                                 </Row>
@@ -244,10 +208,7 @@ class StaffDetail extends Component {
                                         onChange={this.handleInputChange}
                                         name="name" />
                                     <FormFeedback>{errors.name}</FormFeedback>
-
-
                                 </Col>
-
                             </FormGroup>
 
                             <FormGroup row>
@@ -261,8 +222,6 @@ class StaffDetail extends Component {
                                         value={this.state.doB}
                                         onBlur={this.handleBlur('doB')}
                                         onChange={this.handleInputChange} />
-
-
                                 </Col>
                             </FormGroup>
 
@@ -277,8 +236,6 @@ class StaffDetail extends Component {
                                         value={this.state.startDate}
                                         onBlur={this.handleBlur('startDate')}
                                         onChange={this.handleInputChange} />
-
-
                                 </Col>
                             </FormGroup>
 
@@ -293,7 +250,6 @@ class StaffDetail extends Component {
                                         valid={errors.department === ''}
                                         invalid={errors.department !== ''}
                                         value={this.state.department}
-
                                         onBlur={this.handleBlur('department')}
                                         onChange={this.handleInputChange}>
                                         <option value="Dept01">
@@ -383,7 +339,6 @@ class StaffDetail extends Component {
                                 </Col>
                             </FormGroup>
                         </Form>
-
                     </div>
                 </div>
             );
@@ -392,11 +347,8 @@ class StaffDetail extends Component {
                 <div></div>
             );
         }
-
-
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {
@@ -412,7 +364,6 @@ const mapDispatchToProps = (dispatch, props) => {
         UpdateStaffDetail: (newstaff, id) => {
             dispatch(FetchUpdateStaffDetail(newstaff, id))
         },
-
     }
 }
 

@@ -5,12 +5,8 @@ import { connect } from "react-redux";
 import * as actions from "./../actions/index";
 
 const RenderSalary = ({ staff }) => {
-
     return (
-
-
         <div key={staff.id} className="col-12 col-md-6 col-lg-4" style={{ margin: "15px 0px" }}>
-
             <h5>{staff.name}</h5>
             <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Mã nhân viên : {staff.id}</div>
             <div style={{ paddingLeft: "25px", margin: "15px 0px" }}>Hệ số lương : {staff.salaryScale}</div>
@@ -23,11 +19,7 @@ const RenderSalary = ({ staff }) => {
                 decimalScale={0}
             />
             </div>
-
         </div >
-
-
-
     );
 };
 
@@ -91,17 +83,11 @@ class Salary extends Component {
                             </Button>
                         </ButtonGroup>
                     </div>
-
                 </div>
                 <div className="row">
-
                     {staffList.map((staff) => (
-
                         <RenderSalary staff={staff} />
-
-
                     ))}
-
                 </div>
             </div>
         );
