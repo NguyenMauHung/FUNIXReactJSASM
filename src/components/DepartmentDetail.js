@@ -7,16 +7,21 @@ import { FadeTransform } from 'react-animation-components';
 
 class DepartmentDetail extends Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
         var { match } = this.props;
         if (match) {
-            var id = match.params.departmentsId;
-            this.props.DepartmentStaff(id)
+            var departmentsId = match.params.departmentsId;
+            this.props.DepartmentStaff(departmentsId)
         }
     }
 
     render() {
-        var { staffList, departmentsId } = this.props;
+        var { staffList, match } = this.props;
+        if (match) {
+            var departmentsId = match.params.departmentsId;
+        }
+
         const findname_department = (departmentsId) => {
             switch (departmentsId) {
                 case "Dept01":
@@ -75,10 +80,11 @@ class DepartmentDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+
     return {
-        staffDetail: state.departmentList.departmentStaff
+        staffList: state.departmentList.departmentStaff
     }
+
 }
 
 const mapDispatchToProps = (dispatch, props) => {

@@ -98,7 +98,6 @@ export const fetchDepartmentStaff = (id) => {
     return dispatch => {
         return callAPI(`departments/${id}`, "GET", null)
             .then(res => {
-                console.log(res, id)
                 dispatch(DepartmentStaff(res.data))
             })
 

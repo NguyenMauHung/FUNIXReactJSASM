@@ -4,7 +4,7 @@ var initialState = {
     isLoading: true,
     errMess: null,
     departmentList: [],
-    staffDetail: [],
+    departmentStaff: [],
 }
 var myReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -15,7 +15,7 @@ var myReducer = (state = initialState, action) => {
         case types.DEPARTMENT_FAILED:
             return { ...state, isLoading: false, errMess: action.errmess };
         case types.DEPARTMENT_STAFF:
-            return { ...state, isLoading: false, errMess: action.errMess, departmentStaff: action.departmentStaff };
+            return { ...state, isLoading: false, errMess: null, departmentStaff: action.departmentStaff };
         default: return state
     }
 }

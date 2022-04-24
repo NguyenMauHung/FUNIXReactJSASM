@@ -22,8 +22,9 @@ class Main extends Component {
         var { staffList } = this.props;
         var departmentsId = match.params.departmentsId
         return (
-            <DepartmentDetail staffList={staffList} departmentsId={departmentsId}
-            />
+            // <DepartmentDetail staffList={staffList} departmentsId={departmentsId}
+            // />
+            <DepartmentDetail />
         );
     }
 
